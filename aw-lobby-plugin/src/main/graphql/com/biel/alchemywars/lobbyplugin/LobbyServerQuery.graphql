@@ -1,0 +1,5 @@
+query LobbyServerQuery($id: Int!){
+    lobbyServer(id: $id){
+        port
+    }
+}

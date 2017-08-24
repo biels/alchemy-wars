@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="aw-communication-lib_main" target="1.8" />
+      <module name="aw-communication-lib_test" target="1.8" />
+      <module name="protobufmessages_main" target="1.8" />
+      <module name="protobufmessages_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

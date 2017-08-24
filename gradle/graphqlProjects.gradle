@@ -1,0 +1,33 @@
+def graphqlProjects = [
+//        project(':aw-bungeecord-plugin'),
+//        project(':aw-gameserver-plugin'),
+project(':aw-lobby-plugin'),
+//        project(':aw-server'),
+]
+configure(graphqlProjects) {
+    Project p = it;
+    apply plugin: 'com.apollographql.android'
+    def apolloReleaseVersion = '0.4.0'
+
+    dependencies {
+        compile "com.apollographql.apollo:apollo-runtime:$apolloReleaseVersion"
+        compile "com.apollographql.apollo:apollo-android-support:$apolloReleaseVersion"
+//        compile "com.apollographql.apollo:apollo-rx2-support:$apolloReleaseVersion"
+
+    }//aw-lobby-plugin/src/main/graphql/com/biel/alchemywars/lobbyplugin/LobbyServerQuery.graphql
+    def graphQLSchema = "$rootProject.rootDir/aw-server/src/main/resources/schema.graphqls"
+    task introspectSchema(type: Exec, group: 'application') {
+
+        commandLine 'apollo-codegen', 'introspect-schema', graphQLSchema, '--output', 'src/main/graphql/com/biel/alchemywars/lobbyplugin/schema.json'
+    }
+    generateMainApolloIR.dependsOn(introspectSchema)
+    apply plugin: 'idea'
+    idea {
+        module {
+//            sourceDirs += file("${protobuf.generatedFilesBaseDir}/main/java");
+            // If you have additional sourceSets and/or codegen plugins, add all of them
+//            sourceDirs += file("${protobuf.generatedFilesBaseDir}/main/grpc");
+            sourceDirs += file('build/generated/source')
+        }
+    }
+}

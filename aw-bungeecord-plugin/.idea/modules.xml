@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin_main.iml" group="aw-bungeecord-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin_test.iml" group="aw-bungeecord-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1090102576/protobufmessages.iml" filepath="$PROJECT_DIR$/.idea/modules/-1090102576/protobufmessages.iml" group="protobufmessages" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1090102576/protobufmessages_main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1090102576/protobufmessages_main.iml" group="protobufmessages" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1090102576/protobufmessages_test.iml" filepath="$PROJECT_DIR$/.idea/modules/-1090102576/protobufmessages_test.iml" group="protobufmessages" />
+    </modules>
+  </component>
+</project>

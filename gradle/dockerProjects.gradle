@@ -1,0 +1,62 @@
+def dockerProjects = [
+        project(':aw-bungeecord-plugin'),
+//        project(':aw-gameserver-plugin'),
+        project(':aw-lobby-plugin'),
+        project(':aw-server'),
+]
+configure(dockerProjects){
+    Project p = it
+    apply plugin: 'docker'
+    docker{
+        baseImage 'ubuntu'
+        maintainer 'Biel Simon "bielsimon2@gmail.com"'
+    }
+    task buildDocker(type: Docker, dependsOn: 'build' , group: 'application'){
+        //onlyIf{  }
+        //inputs.files(fileTree(p.getProjectDir().toString() + '/src/main'))
+        applicationName = p.name
+        dockerfile = file('Dockerfile')
+        //tagVersion 'latest'
+    }
+    task updateDockerService(type: Exec, dependsOn: buildDocker, group: 'application'){
+        onlyIf{ dependsOnTaskDidWork() }
+        def dockerImage = "${p.group}/${p.name}:${p.version}"
+        def stackName = 'aw'
+        def serviceName = p.name
+        commandLine 'docker', 'service', 'update', "${stackName}_${serviceName}", '--force'//, '--image', dockerImage
+    }
+}
+task initSwarm(type: Exec){
+    commandLine 'docker', 'swarm', 'init'
+}
+task undeployDev(type: Exec, group: 'application'){
+    commandLine 'docker', 'stack', 'rm', 'aw'
+}
+
+private void waitForRemoval(String dockerEntity) {
+    while (true) {
+        ByteArrayOutputStream stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'docker', dockerEntity, 'ls', '--filter', 'label=com.docker.stack.namespace=aw', '-q'
+            standardOutput = stdout;
+        }
+        def length = stdout.toString().length()
+        if (length == 0) break;
+    }
+}
+
+task deployDev(type: Exec, group: 'application'){
+    dependsOn subprojects.collect {it.tasks.matching {it.getName() == "buildDocker"}}
+    mustRunAfter undeployDev
+    doFirst{
+        println 'Waiting for stack to finish undeploying...'
+        waitForRemoval('service')
+        waitForRemoval('network')
+        println 'Stack undeploy finished'
+    }
+    commandLine 'docker', 'stack', 'deploy', '-c', 'docker-compose.yml', 'aw'
+}
+
+task redeployDev(group: 'application'){
+    dependsOn undeployDev, deployDev
+}

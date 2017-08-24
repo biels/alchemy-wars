@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/alchemy-wars.iml" filepath="$PROJECT_DIR$/alchemy-wars.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin/aw-bungeecord-plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin/aw-bungeecord-plugin.iml" group="aw-bungeecord-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin/aw-bungeecord-plugin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin/aw-bungeecord-plugin_main.iml" group="aw-bungeecord-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin/aw-bungeecord-plugin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-bungeecord-plugin/aw-bungeecord-plugin_test.iml" group="aw-bungeecord-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-communication-lib/aw-communication-lib.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-communication-lib/aw-communication-lib.iml" group="aw-communication-lib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-communication-lib/aw-communication-lib_main.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-communication-lib/aw-communication-lib_main.iml" group="aw-communication-lib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-communication-lib/aw-communication-lib_test.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-communication-lib/aw-communication-lib_test.iml" group="aw-communication-lib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-lobby-plugin/aw-lobby-plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-lobby-plugin/aw-lobby-plugin.iml" group="aw-lobby-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-lobby-plugin/aw-lobby-plugin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-lobby-plugin/aw-lobby-plugin_main.iml" group="aw-lobby-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-lobby-plugin/aw-lobby-plugin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-lobby-plugin/aw-lobby-plugin_test.iml" group="aw-lobby-plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-server/aw-server.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-server/aw-server.iml" group="aw-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-server/aw-server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-server/aw-server_main.iml" group="aw-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aw-server/aw-server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/aw-server/aw-server_test.iml" group="aw-server" />
+    </modules>
+  </component>
+</project>

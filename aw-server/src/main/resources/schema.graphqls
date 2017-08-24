@@ -1,0 +1,13 @@
+type Query {
+    lobbyServer(id: Int!): LobbyServer
+    allLobbyServers(): [LobbyServer]
+}
+
+type Mutation {
+    registerServer(port: Int!): LobbyServer
+}
+
+type LobbyServer {
+    id: Int!,
+    port: Int!
+}

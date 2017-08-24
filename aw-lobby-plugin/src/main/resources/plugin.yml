@@ -1,0 +1,11 @@
+name: AwLobbyPlugin
+version: 1.0-SNAPSHOT
+author: biels
+main: com.biel.alchemywars.lobbyplugin.AwLobbyPlugin
+depend: []
+website: https://github.com/biels/
+commands:
+   flagrate:
+     description: Set yourself on fire.
+     aliases: [combust_me, combustMe]
+     usage: Syntax error! Simply type /&lt;command&gt; to ignite yourself.

@@ -1,0 +1,77 @@
+version: "3"
+services:
+  aw-server:
+    image: com.biel.alchemywars/aw-server:0.0.1-SNAPSHOT
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1G
+    ports:
+      - "4500:4500"
+    networks:
+      - overlay-network
+
+  aw-bungeecord-plugin:
+    image: com.biel.alchemywars/aw-bungeecord-plugin:0.0.1-SNAPSHOT
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+    ports:
+      - "5000-5099:5000-5099"
+    networks:
+      - overlay-network
+
+  aw-lobby-plugin:
+      image: com.biel.alchemywars/aw-lobby-plugin:0.0.1-SNAPSHOT
+      deploy:
+        replicas: 1
+        restart_policy:
+          condition: on-failure
+        resources:
+          limits:
+            cpus: "1"
+            memory: 1G
+      ports:
+        - "5100-5199:5100-5199"
+      networks:
+        - overlay-network
+
+  rabbitmq:
+    image: rabbitmq
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+    ports:
+      - "5672:5672"
+    networks:
+      - overlay-network
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "7000:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - overlay-network
+
+networks:
+  overlay-network:
+    driver: overlay

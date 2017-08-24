@@ -1,0 +1,40 @@
+def spigotProjects = [
+//        project(':aw-gameserver-plugin'),
+        project(':aw-lobby-plugin'),
+]
+apply from: 'gradle/pluginProjectUtils.gradle'
+configure(spigotProjects){
+    Project p = it
+
+    repositories {
+        maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/'}
+    }
+
+
+    def spigotGlobal = "../deployment/spigot-tools"
+    def spigotLocal = "server"
+    def serverOutDir = "$buildDir/target"
+
+    pluginTasks.call(p, spigotLocal, spigotGlobal, serverOutDir)
+
+    def worldDir = "$buildDir/world"
+    task unzipWorld(type: Copy){
+        from(zipTree("$spigotLocal/worlds/default.zip")){
+            include '**/**'
+        }
+
+        into worldDir
+    }
+    task copyWorld(type: Copy){
+        dependsOn unzipWorld
+        from("$worldDir/world"){
+            include '**/**'
+        }
+        into serverOutDir
+    }
+
+    buildServer.dependsOn copyWorld
+
+
+}

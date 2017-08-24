@@ -1,0 +1,3 @@
+rootProject.name = 'aw-server'
+include ':aw-communication-lib'
+project(':aw-communication-lib').projectDir = new File('../aw-communication-lib')

@@ -1,0 +1,29 @@
+buildscript {
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+        classpath 'com.apollographql.apollo:gradle-plugin:0.4.0'
+    }
+}
+apply plugin: 'idea'
+apply from: 'gradle/dockerProjects.gradle'
+apply from: 'gradle/spigotProjects.gradle'
+apply from: 'gradle/bungeeProjects.gradle'
+apply from: 'gradle/graphqlProjects.gradle'
+
+subprojects{
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url  "http://dl.bintray.com/andimarek/graphql-java" }
+    }
+}
+allprojects {
+    group = 'com.biel.alchemywars'
+    version = '0.0.1-SNAPSHOT'
+}
+

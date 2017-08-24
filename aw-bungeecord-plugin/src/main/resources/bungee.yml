@@ -1,0 +1,4 @@
+name: AwBungeeCordPlugin
+main: com.biel.alchemywars.awbungeecordplugin.AwBungeeCordPlugin
+version: 1.0
+author: biels

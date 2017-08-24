@@ -1,0 +1,4 @@
+rootProject.name = 'aw-bungeecord-plugin'
+
+include ':protobufmessages'
+project(':protobufmessages').projectDir = new File('../aw-protobuf-messages')

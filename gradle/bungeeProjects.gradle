@@ -1,0 +1,21 @@
+def bungeeProjects = [
+        project(':aw-bungeecord-plugin'),
+]
+apply from: 'gradle/pluginProjectUtils.gradle'
+configure(bungeeProjects){
+    Project p = it
+    def proxyGlobal = "../deployment/proxy-tools"
+    def proxyLocal = "proxy"
+    def serverOutDir = "$buildDir/target"
+
+    pluginTasks.call(p, proxyLocal, proxyGlobal, serverOutDir)
+
+    task copyProxyModules(type: Copy){
+        from("$proxyGlobal/modules"){
+            include '**/*.jar'
+        }
+        into "$serverOutDir/modules"
+    }
+
+    buildServer.dependsOn copyProxyModules
+}

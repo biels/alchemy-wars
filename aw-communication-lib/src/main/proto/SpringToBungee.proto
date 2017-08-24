@@ -1,0 +1,14 @@
+syntax = "proto3";
+package com.biel.alchemywars.communication.protobuf;
+
+message TeleportPlayer {
+    int32 serverPort = 1;
+    string playerName = 2;
+}
+message ServerRegistration{
+    enum Action {REGISTER = 0; REMOVE = 1;}
+    enum ServerType {LOBBY = 0; MATCH = 1;}
+    Action action = 1;
+    ServerType serverType = 2;
+    int32 port = 3;
+}

@@ -1,0 +1,33 @@
+apply plugin: 'java'
+
+
+sourceCompatibility = 1.8
+
+
+dependencies {
+    def spigotApi = 'org.spigotmc:spigot-api:1.12-R0.1-SNAPSHOT'
+    compileOnly spigotApi
+    testCompile spigotApi
+    def lombok = 'org.projectlombok:lombok:1.16.18'
+    compileOnly lombok
+    testCompileOnly lombok
+
+    compile project(':aw-communication-lib')
+
+    compile 'com.mashape.unirest:unirest-java:1.4.9'
+    runtime "org.apache.httpcomponents:httpclient:4.3.6"
+    runtime "org.apache.httpcomponents:httpasyncclient:4.0.2"
+    runtime "org.apache.httpcomponents:httpmime:4.3.6"
+    runtime "org.json:json:20140107"
+
+    //compileOnly "org.bukkit:bukkit:1.12-R0.1-SNAPSHOT"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+//    testCompile fileTree('../deployment/spigot-tools/bin/*.jar')
+    testCompile "org.mockito:mockito-core:2.8.47"
+//    testCompile 'org.powermock:powermock:1.6.6'
+    testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '1.7.0'
+    testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '1.7.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'
+
+
+}

@@ -1,0 +1,82 @@
+ext{
+    pluginTasks = { Project project, String localDir, String globalDir, String serverOutDir ->
+        configure(project) {
+            apply plugin: 'java'
+
+            def commonTools = "../deployment/tools"
+            task copyServerConfig(type: Copy) {
+                from("$globalDir/config") {
+                    include "**/**"
+                }
+                from("$localDir/config") {
+                    include "**/**"
+                    rename '.properties', '.properties.template'
+                    rename 'config.yml', 'config.yml.template'
+                }
+                into "$serverOutDir"
+            }
+            task copyServerPlugins(type: Copy) {
+                from("$globalDir/plugins") {
+                    include "**/**"
+                }
+                from("$localDir/plugins") {
+                    include "**/**"
+                }
+                from("$buildDir/libs") {
+                    include "**/*.jar"
+                }
+                into "$serverOutDir/plugins"
+            }
+            task copyProvisioningTools(type: Copy) {
+                from("$commonTools/provisioning") {
+                    include "**/**"
+                }
+                from("$globalDir/provisioning") {
+                    include "**/**"
+                }
+                from("$localDir/provisioning") {
+                    include "**/**"
+                }
+                into "$serverOutDir/provisioning"
+            }
+            task copyServerBinary(type: Copy) {
+                from("$globalDir/bin") {
+                    include '**/*.jar'
+                }
+                into "$serverOutDir"
+            }
+            task copyEntrypoint(type: Copy) {
+                from("$commonTools") {
+                    include 'provision-entrypoint.sh'
+                    rename 'provision-entrypoint.sh', 'entrypoint.sh'
+                }
+                from("$globalDir") {
+                    include 'start.sh'
+                }
+                from("$localDir") {
+                    include 'provision.sh'
+                }
+                into "$serverOutDir"
+            }
+            task buildServer(group: 'application') {
+                dependsOn copyServerConfig, copyServerPlugins, copyProvisioningTools, copyServerBinary, copyEntrypoint
+
+            }
+            buildDocker.dependsOn buildServer
+            buildDocker.doFirst {
+                File stageDir = new File(project.buildDir, "docker")
+                copy {
+                    from serverOutDir
+                    into "${stageDir}/target"
+                }
+            }
+            jar {
+                from {
+                    (configurations.runtime).collect {
+                        it.isDirectory() ? it : zipTree(it)
+                    }
+                }
+            }
+        }
+    }
+}

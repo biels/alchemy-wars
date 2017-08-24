@@ -1,0 +1,6 @@
+rootProject.name = 'alchemy-wars'
+include 'aw-bungeecord-plugin'
+include 'aw-communication-lib'
+//include 'aw-gameserver-plugin'
+include 'aw-lobby-plugin'
+include 'aw-server'
